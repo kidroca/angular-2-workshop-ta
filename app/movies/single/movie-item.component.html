@@ -2,9 +2,9 @@
     <img class="img-thumbnail" [src]="movie.poster" [alt]="movie.title" />
 </td>
 
-<td class="hidden-xs">{{movie.title}}</td>
+<td ><a [routerLink]="['/movies', movie.imdbID]">{{movie.title}}</a></td>
 
-<td>{{movie.year}}</td>
+<td class="hidden-xs">{{movie.year}}</td>
 
 <td>
     <mvdb-rating [rating]="movie.imdbRating" [totalStars]="10"></mvdb-rating>

@@ -1,0 +1,46 @@
+<section class="panel panel-default" *ngIf="movie">
+
+    <header class="panel-heading">
+
+        <div class="row">
+            <h1 class="col-md-7">{{movie.title}}</h1>
+            <div class="rating">
+                <strong class="rating-value">{{movie.imdbRating}}</strong>
+                <span>/ 10</span>
+                <strong class="rating-votes">{{movie.imdbVotes}}</strong>
+            </div>
+        </div>
+
+        <div class="row text-capitalize">
+            <span class="right-border">{{movie.rated}}</span>
+            <span class="right-border">{{movie.runtime}}min</span>
+            <span class="right-border">{{movie.genre}}</span>
+        </div>
+    </header>
+
+    <article class="panel-body">
+        <img class="img-responsive" [src]="movie.poster" [alt]="movie.title" />
+
+        <p>{{movie.plot}}</p>
+
+        <br>
+
+        <p *ngIf="movie.cast.writer">
+            <strong>Writer: </strong><span>{{movie.cast.writer}}</span>
+        </p>
+        <p *ngIf="movie.cast.director">
+            <strong>Director: </strong><span>{{movie.cast.director}}</span>
+        </p>
+        <p *ngIf="movie.cast.actors.length > 0">
+            <strong>Actors: </strong><span>{{movie.cast.actors}}</span>
+        </p>
+    </article>
+
+    <footer class="panel-footer">
+        <span class="right-border">{{movie.year}}</span>
+        <span class="right-border">{{movie.awards}}</span>
+        <span class="right-border">{{movie.released}}</span>
+
+        <button class="btn btn-info" (click)="goBack()">Back</button>
+    </footer>
+</section>

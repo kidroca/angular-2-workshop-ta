@@ -4,8 +4,7 @@ import {MovieDataService} from '../../data/movie-data.service';
 
 @Component({
     selector: 'mvdb-movies-list',
-    templateUrl: 'movies-list.component.html',
-    providers: [MovieDataService]
+    templateUrl: 'movies-list.component.html'
 })
 export class MoviesListComponent implements OnInit {
 

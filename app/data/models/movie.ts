@@ -25,8 +25,20 @@ export class Movie extends Assignable {
     type: string;
     top250: number;
 
-    constructor(values: Object = {}) {
+    constructor(values: any = {}) {
         super();
+
+        let castData = {
+            director: values.Director,
+            writer: values.Writer,
+            actors: values.Actors
+        };
+
+        this.cast = new MovieCast(castData);
+
+        Reflect.deleteProperty(values, 'Director');
+        Reflect.deleteProperty(values, 'Writer');
+        Reflect.deleteProperty(values, 'Actors');
 
         this.assignFields(values);
     }
