@@ -1,0 +1,29 @@
+<section class="container">
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th class="center no-border-side" width="50">Poster</th>
+            <th class="th-sortable no-border-side">Title</th>
+            <th class="th-sortable hidden-xs no-border-side">Year</th>
+            <th class="th-sortable hidden-xs no-border-side">Imdb Rating</th>
+        </tr>
+        </thead>
+
+        <tbody *ngIf="movies.length > 0">
+            <tr *ngFor="let movie of movies">
+
+                <td class="media">
+                    <img [src]="movie.poster" [alt]="movie.title" />
+                </td>
+
+                <td class="hidden-xs">{{movie.title}}</td>
+
+                <td>{{movie.year}}</td>
+
+                <td>{{movie.imdbRating}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
