@@ -5,17 +5,22 @@ import {MovieDataService} from '../../data/movie-data.service';
 @Component({
     selector: 'mvdb-movies-list',
     templateUrl: 'movies-list.component.html',
-    styleUrls: [
-        'movies-list.component.less'
-    ],
     providers: [MovieDataService]
 })
 export class MoviesListComponent implements OnInit {
 
     movies: Movie[] = [];
-    pageTitle: string = 'Movies List';
+    searchTerm: string = '';
+    orders: any[] = [];
+    orderBy: string;
+    orderDescending = false;
 
     constructor(private movieData: MovieDataService) { }
+
+    toggleOrder(isReverse: string) {
+
+        this.orderDescending = JSON.parse(isReverse);
+    }
 
     private initMovies(): void {
         this.movieData
@@ -23,7 +28,18 @@ export class MoviesListComponent implements OnInit {
             .then(movies => this.movies = movies);
     }
 
+    private initOrders(): void {
+        this.orders = [
+            {key: 'title', name: 'Title'},
+            {key: 'year', name: 'Year'},
+            {key: 'imdbRating', name: 'Imdb Rating'}
+        ];
+
+        this.orderBy = this.orders[0].key;
+    }
+
     ngOnInit(): void {
         this.initMovies();
+        this.initOrders();
     }
 }
