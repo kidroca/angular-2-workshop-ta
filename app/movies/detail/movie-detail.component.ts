@@ -1,4 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {ActivatedRoute, Params} from '@angular/router';
+
+import {MovieDataService} from '../../data/movie-data.service';
 import {Movie} from '../../data/models/movie';
 
 @Component({
@@ -7,9 +11,21 @@ import {Movie} from '../../data/models/movie';
 })
 export class MovieDetailComponent implements OnInit {
 
-    @Input() movie: Movie;
+    movie: Movie;
 
-    constructor() { }
+    constructor(
+        private movieService: MovieDataService,
+        private route: ActivatedRoute,
+        private location: Location
+    ) { }
 
-    ngOnInit() { }
+    goBack() {
+        this.location.back();
+    }
+
+    ngOnInit() {
+        this.route.params
+            .switchMap((params: Params) => this.movieService.getMovie(params['id']))
+            .subscribe(movie => this.movie = movie);
+    }
 }

@@ -1,4 +1,4 @@
-<section class="panel panel-default">
+<section class="panel panel-default" *ngIf="movie">
 
     <header class="panel-heading">
 
@@ -14,7 +14,7 @@
         <div class="row text-capitalize">
             <span class="right-border">{{movie.rated}}</span>
             <span class="right-border">{{movie.runtime}}min</span>
-            <span class="right-border">{{movie.genre | join}}</span>
+            <span class="right-border">{{movie.genre}}</span>
         </div>
     </header>
 
@@ -32,7 +32,7 @@
             <strong>Director: </strong><span>{{movie.cast.director}}</span>
         </p>
         <p *ngIf="movie.cast.actors.length > 0">
-            <strong>Actors: </strong><span>{{movie.cast.actors | join}}</span>
+            <strong>Actors: </strong><span>{{movie.cast.actors}}</span>
         </p>
     </article>
 
@@ -40,5 +40,7 @@
         <span class="right-border">{{movie.year}}</span>
         <span class="right-border">{{movie.awards}}</span>
         <span class="right-border">{{movie.released}}</span>
+
+        <button class="btn btn-info" (click)="goBack()">Back</button>
     </footer>
 </section>
