@@ -7,7 +7,13 @@ const movies = require('json-loader!./movies.json').map((data: any) => new Movie
 export class MovieDataService {
 
     getMovies(): Promise<Movie[]> {
+
         return Promise.resolve(movies.slice());
+    }
+
+    getMovie(id: string): Promise<Movie> {
+
+        return Promise.resolve(movies.filter((m: Movie) => m.imdbID === id).pop());
     }
 
     query(values: Object): Promise<Movie[]> {
