@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Movie} from './models/movie';
 
-const movies = require('./movies.json').select((data: any) => new Movie(data));
+const movies = require('json-loader!./movies.json').map((data: any) => new Movie(data));
 
 @Injectable()
 export class MovieDataService {
