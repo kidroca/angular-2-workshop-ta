@@ -1,17 +1,19 @@
 export abstract class Assignable {
 
     protected assignFields(values: Object) {
-        const originalKeys = Reflect.ownKeys(this);
-
         //noinspection TsLint
         for (let key in values) if (values.hasOwnProperty(key)) {
-            this[key.toLowerCase()] = values[key];
+            this[toCamelCase(key)] = values[key];
         }
 
-        originalKeys.forEach(key => {
+        for (let key in this) {
             if (!this[key]) {
                 throw new Error(`The ${key} have not been assigned`);
             }
-        });
+        }
     }
+}
+
+function toCamelCase(field: string) {
+    return field[0].toLowerCase() + field.substring(1, field.length);
 }
