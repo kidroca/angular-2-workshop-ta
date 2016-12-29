@@ -12,6 +12,9 @@ export class FilterPipe<T extends Object> implements PipeTransform {
             return collection;
         }
 
-        return collection.filter(item => item[key].toString().includes(term));
+        return collection.filter(item => item[key]
+            .toString()
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()));
     }
 }
