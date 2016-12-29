@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
     selector: 'mvdb-rating',
     template: `
-        <span class="rating" placement="top" ngbTooltip="{{rating}}">
+        <span class="rating" placement="top" ngbTooltip="{{rating}} / {{totalStars}}">
             <span *ngFor="let i of stars" 
                   class="star" 
                   [class.active]="i <= roundRating">&#9733;</span>
