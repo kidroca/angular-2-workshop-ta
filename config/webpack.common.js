@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.ts', '.js']
+		extensions: ['.ts', '.js', '.less']
 	},
 
 	module: {
@@ -27,12 +27,15 @@ module.exports = {
 			loader: 'html-loader'
 		}, {
 			test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-			loader: 'file?name=assets/[name].[hash].[ext]'
+			loader: 'file-loader?name=assets/[name].[hash].[ext]'
 		}, {
-			test: /.css$/,
+			test: /\.css$/,
 			exclude: helpers.root('src', 'app'),
-			loaders: [ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' }), 'to-string-loader', 'css-loader']
-		}]
+			loaders: [ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' }), 'to-string-loader', 'css-loader', 'less-loader']
+		}, {
+            test: /\.less$/,
+            loaders: ['to-string-loader', 'css-loader', 'less-loader']
+        }]
 	},
 
 	plugins: [

@@ -1,0 +1,11 @@
+<td class="media">
+    <img class="img-thumbnail" [src]="movie.poster" [alt]="movie.title" />
+</td>
+
+<td class="hidden-xs">{{movie.title}}</td>
+
+<td>{{movie.year}}</td>
+
+<td>
+    <mvdb-rating [rating]="movie.imdbRating" [totalStars]="10"></mvdb-rating>
+</td>
