@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
 
 import {MovieItemComponent} from './movies/single/movie-item.component';
 import {MoviesListComponent} from './movies/list/movies-list.component';
@@ -13,6 +14,7 @@ import {MovieDetailComponent} from './movies/detail/movie-detail.component';
 
 @NgModule({
     imports: [
+        RouterModule,
         CommonModule,
         FormsModule,
         NgbTooltipModule
@@ -30,6 +32,7 @@ import {MovieDetailComponent} from './movies/detail/movie-detail.component';
     exports: [
         CommonModule,
         FormsModule,
+        RouterModule,
         MoviesListComponent,
         MovieItemComponent,
         RatingComponent,
