@@ -7,9 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies/list/movies-list.component';
 import { MovieItemComponent } from './movies/single/movie-item.component';
-import Order = jasmine.Order;
 import {OrderByPipe} from './pipes/order-by.pipe';
 import {FilterPipe} from './pipes/filer.pipe';
+import {RatingComponent} from './movies/rating.component';
 
 @NgModule({
     imports: [
@@ -23,6 +23,7 @@ import {FilterPipe} from './pipes/filer.pipe';
         AppComponent,
         MoviesListComponent,
         MovieItemComponent,
+        RatingComponent,
         OrderByPipe,
         FilterPipe
     ],

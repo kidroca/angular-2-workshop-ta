@@ -6,4 +6,6 @@
 
 <td>{{movie.year}}</td>
 
-<td>{{movie.imdbRating}}</td>
+<td>
+    <mvdb-rating [rating]="movie.imdbRating" [totalStars]="10"></mvdb-rating>
+</td>
