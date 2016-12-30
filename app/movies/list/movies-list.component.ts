@@ -14,6 +14,8 @@ export class MoviesListComponent implements OnInit {
     orderBy: string;
     orderDescending = false;
 
+    private lastSearch: string;
+
     constructor(private movieData: MovieDataService) { }
 
     toggleOrder(isReverse: string) {
@@ -21,9 +23,15 @@ export class MoviesListComponent implements OnInit {
         this.orderDescending = JSON.parse(isReverse);
     }
 
-    private initMovies(): void {
-        this.movieData
-            .getMovies()
+    searchMovies(): void {
+
+        if (this.lastSearch === this.searchTerm) {
+            return;
+        }
+
+        this.lastSearch = this.searchTerm;
+
+        this.movieData.searchByTitle(this.searchTerm)
             .then(movies => this.movies = movies);
     }
 
@@ -38,7 +46,6 @@ export class MoviesListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.initMovies();
         this.initOrders();
     }
 }
