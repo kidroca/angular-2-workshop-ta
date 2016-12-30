@@ -6,7 +6,7 @@ import {RouterModule} from '@angular/router';
 
 import {MovieItemComponent} from './movies/single/movie-item.component';
 import {MoviesListComponent} from './movies/list/movies-list.component';
-import {RatingComponent} from './movies/rating.component';
+import {RatingComponent} from './movies/rating/rating.component';
 import {OrderByPipe} from './pipes/order-by.pipe';
 import {FilterPipe} from './pipes/filer.pipe';
 import {JoinPipe} from './pipes/join.pipe';

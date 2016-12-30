@@ -9,7 +9,9 @@
                 <input id="search-box"
                        name="search-box"
                        type="text"
+                       minlength="3"
                        [(ngModel)]="searchTerm"
+                       (keyup.enter)="searchMovies()"
                        class="form-control">
             </div>
         </div>
@@ -49,6 +51,13 @@
             <th class="th-sortable hidden-xs no-border-side">Imdb Rating</th>
         </tr>
         </thead>
+
+        <tbody *ngIf="movies.length === 0">
+            <tr>
+                <td></td>
+                <td>No results. Enter some text like <q>Star Wars</q> in the search field and press enter</td>
+            </tr>
+        </tbody>
 
         <tbody *ngIf="movies.length > 0">
             <tr *ngFor="let movie of movies | filter:'title':searchTerm | orderBy:orderBy:orderDescending"

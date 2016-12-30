@@ -1,0 +1,15 @@
+<div *ngIf="rating >= 0" class="rating">
+    <div class="stars hidden-xs row" ngbTooltip="{{rating}} / {{totalStars}}" placement="top">
+        <span *ngFor="let i of stars"
+              class="star"
+              [class.active]="i <= roundRating">&#9733;</span>
+    </div>
+
+    <div class="badge">
+        <strong class="rating-value">{{rating}}</strong>
+        <span>/ 10</span>
+        <strong class="rating-votes" ngbTooltip="Votes" placement="top">
+            {{votes}}
+        </strong>
+    </div>
+</div>

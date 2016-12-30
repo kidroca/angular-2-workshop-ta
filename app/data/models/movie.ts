@@ -1,6 +1,7 @@
 import {AudienceRating} from './audience-rating.enum';
 import {MovieCast} from './movie-cast';
 import {Assignable} from './asignable';
+import {MovieType} from './movie-type.enum';
 
 export class Movie extends Assignable {
 
@@ -22,7 +23,7 @@ export class Movie extends Assignable {
     imdbRating: number;
     imdbVotes: number;
     imdbID: string;
-    type: string;
+    type: MovieType;
     top250: number;
 
     constructor(values: any = {}) {
