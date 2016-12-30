@@ -5,12 +5,6 @@ export abstract class Assignable {
         for (let key in values) if (values.hasOwnProperty(key)) {
             this[toCamelCase(key)] = values[key];
         }
-
-        for (let key in this) {
-            if (!this[key]) {
-                throw new Error(`The ${key} have not been assigned`);
-            }
-        }
     }
 }
 
