@@ -7,7 +7,8 @@ import {Movie} from '../../data/models/movie';
 
 @Component({
     selector: 'mvdb-movie-detail',
-    templateUrl: 'movie-detail.component.html'
+    templateUrl: 'movie-detail.component.html',
+    styleUrls: ['movie-detail.component.less']
 })
 export class MovieDetailComponent implements OnInit {
 
