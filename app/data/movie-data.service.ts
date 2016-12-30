@@ -1,28 +1,45 @@
+import {Http, URLSearchParams} from '@angular/http';
+
 import {Injectable} from '@angular/core';
 import {Movie} from './models/movie';
+import {MovieType} from './models/movie-type.enum';
 
-const movies = require('json-loader!./movies.json').map((data: any) => new Movie(data));
+const baseApiUrl = 'http://www.omdbapi.com/';
 
 @Injectable()
 export class MovieDataService {
 
-    getMovies(): Promise<Movie[]> {
-
-        return Promise.resolve(movies.slice());
-    }
+    constructor(private http: Http) {}
 
     getMovie(id: string): Promise<Movie> {
 
-        return Promise.resolve(movies.filter((m: Movie) => m.imdbID === id).pop());
-    }
-
-    query(values: Object): Promise<Movie[]> {
-
-        if (Reflect.ownKeys(values).length === 0) {
-
-            return Promise.reject<Movie[]>(new Error('No query properties are provided'));
+        if (!id) {
+            return Promise.reject<Movie>(new Error('The id is required'));
         }
 
-        return Promise.resolve(movies.slice());
+        let params = new URLSearchParams();
+        params.set('i', id);
+        params.set('plot', 'full');
+
+        return this.http.get(baseApiUrl, {search: params})
+            .toPromise()
+            .then(response => response.json())
+            .then(item => new Movie(item));
+    }
+
+    searchByTitle(title: string, type: MovieType = MovieType.movie): Promise<Movie[]> {
+
+        if (!title || title.length < 3) {
+            return Promise.reject<Movie[]>(new Error('The title is too short'));
+        }
+
+        let params = new URLSearchParams();
+        params.set('s', title);
+        params.set('type', MovieType[type]);
+
+        return this.http.get(baseApiUrl, {search: params})
+            .toPromise()
+            .then(response => response.json().Search)
+            .then(data => data.map((item: any) => new Movie(item)));
     }
 }
